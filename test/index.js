@@ -31,6 +31,7 @@ describe('LoggableError subclass', function () {
 
     equal(error.name, 'SubError');
     equal(error instanceof SubError, true);
+    equal(typeof SubError.extend, 'function');
   });
 
   it('extend with attributes hash and instantiate', function () {
