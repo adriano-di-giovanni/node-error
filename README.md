@@ -45,3 +45,8 @@ var
 console.log(error.attributes);
 ```
 
+## Errors
+
+### LoggableError
+
+LoggableError is an error having the `stack` property enumerable.
