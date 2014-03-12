@@ -58,4 +58,22 @@ describe('LoggableError subclass', function () {
     equal(error.attributes.version, version);
     assert.deepEqual(error.attributes.memoryUsage, memoryUsage);
   });
+
+  it('extend a suberror and instantiate', function () {
+    var
+      memoryUsage = process.memoryUsage(),
+      attributes = function () {
+        return {
+          version: version,
+          memoryUsage: memoryUsage
+        };
+      },
+      BaseError = LoggableError.extend('SubError', attributes),
+      SubError = BaseError.extend('SubError'),
+      error = new SubError();
+
+    equal(error.name, 'SubError');
+    equal(error.attributes.version, version);
+    assert.deepEqual(error.attributes.memoryUsage, memoryUsage);
+  });
 });
