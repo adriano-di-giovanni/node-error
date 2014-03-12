@@ -1,0 +1,24 @@
+{
+  "name": "node-error",
+  "version": "0.1.0",
+  "description": "A library of extendable custom errors for node.js",
+  "main": "lib/error.js",
+  "scripts": {
+    "test": "mocha -R spec test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adriano-di-giovanni/node-error"
+  },
+  "keywords": [
+    "javascript",
+    "node",
+    "error"
+  ],
+  "author": "Adriano Di Giovanni <me@adrianodigiovanni.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adriano-di-giovanni/node-error/issues"
+  },
+  "homepage": "https://github.com/adriano-di-giovanni/node-error"
+}
