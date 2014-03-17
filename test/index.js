@@ -8,7 +8,8 @@ var
   basePath = process.cwd(),
   equal = assert.equal,
 
-  LoggableError = require(path.resolve(basePath+'/lib/error')).LoggableError;
+  LoggableError = require(path.resolve(basePath+'/lib/error')).LoggableError,
+  ProxiedError = require(path.resolve(basePath+'/lib/error')).ProxiedError;
 
 describe('LoggableError', function () {
   it('instantiate', function () {
@@ -16,6 +17,19 @@ describe('LoggableError', function () {
       error = new LoggableError();
 
     equal(error.name, 'LoggableError');
+    equal(error.propertyIsEnumerable('stack'), true);
+
+    console.log(error);
+  });
+});
+
+describe('ProxiedError', function () {
+  it('instantiate', function () {
+    var
+      error = new ProxiedError(new Error('message'));
+
+    equal(error.name, 'Error');
+    equal(error.message, 'message');
     equal(error.propertyIsEnumerable('stack'), true);
   });
 });

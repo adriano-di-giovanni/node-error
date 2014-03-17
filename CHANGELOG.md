@@ -9,3 +9,7 @@ Initial release
 ### Bug fixes
 
 * LoggableError.extend didn't copy itself to the extended constructor
+
+## 0.1.2
+
+* Added `ProxiedError` to make third-party errors loggable

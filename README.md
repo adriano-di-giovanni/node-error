@@ -50,3 +50,13 @@ console.log(error.attributes);
 ### LoggableError
 
 LoggableError is an error having the `stack` property enumerable.
+
+### ProxiedError
+
+```javascript
+var
+	ProxiedError = require('node-error').ProxiedError;
+
+var
+	error = new ProxiedError(new Error());
+```
