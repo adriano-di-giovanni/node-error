@@ -13,3 +13,7 @@ Initial release
 ## 0.1.2
 
 * Added `ProxiedError` to make third-party errors loggable
+
+## 0.1.3
+
+* Added stack trace to ProxiedError
