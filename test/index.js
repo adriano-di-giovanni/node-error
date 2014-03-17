@@ -91,3 +91,61 @@ describe('LoggableError subclass', function () {
     assert.deepEqual(error.attributes.memoryUsage, memoryUsage);
   });
 });
+
+describe('ProxiedError subclass', function () {
+  var
+    version = require(path.resolve(basePath+'/package')).version;
+
+  it('extend without attributes and instantiate', function () {
+    var
+      SubError = ProxiedError.extend(),
+      error = new SubError(new Error('message'));
+
+    equal(error.name, 'Error');
+    equal(error instanceof SubError, true);
+    equal(typeof SubError.extend, 'function');
+  });
+
+  it('extend with attributes hash and instantiate', function () {
+    var
+      attributes = { version: version },
+      SubError = ProxiedError.extend(null, attributes),
+      error = new SubError(new Error('message'));
+
+    assert.deepEqual(error.attributes, attributes);
+  });
+
+  it('extend with attributes function and instantiate', function () {
+    var
+      memoryUsage = process.memoryUsage(),
+      attributes = function () {
+        return {
+          version: version,
+          memoryUsage: memoryUsage
+        };
+      },
+      SubError = ProxiedError.extend(null, attributes),
+      error = new SubError(new Error('message'));
+
+    equal(error.attributes.version, version);
+    assert.deepEqual(error.attributes.memoryUsage, memoryUsage);
+  });
+
+  it('extend a suberror and instantiate', function () {
+    var
+      memoryUsage = process.memoryUsage(),
+      attributes = function () {
+        return {
+          version: version,
+          memoryUsage: memoryUsage
+        };
+      },
+      BaseError = ProxiedError.extend(null, attributes),
+      SubError = BaseError.extend('SubError'),
+      error = new SubError(new Error());
+
+    equal(error.name, 'SubError');
+    equal(error.attributes.version, version);
+    assert.deepEqual(error.attributes.memoryUsage, memoryUsage);
+  });
+});
