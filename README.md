@@ -47,6 +47,10 @@ console.log(error.attributes);
 
 ## Errors
 
+### ExtendableError
+
+ExtendableError is the base error to extend using `.extend` method.
+
 ### LoggableError
 
 LoggableError is an error having the `stack` property enumerable.
